@@ -31,7 +31,6 @@ function savePlayerConfig(event) {
     } else {
         players[1].name = enteredPlayerName;
     }
-
-
+ 
     closePlayerConfig();
 }
