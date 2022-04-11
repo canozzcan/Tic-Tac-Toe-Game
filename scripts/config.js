@@ -1,4 +1,5 @@
-function openPlayerConfig() {
+function openPlayerConfig(event) {
+    editedPlayer = +event.target.dataset.playerid;  // +'1' => 1
     playerConfigOverlayElement.style.display = 'block';
     backdropElement.style.display = 'block';
 }
@@ -8,6 +9,7 @@ function closePlayerConfig() {
     backdropElement.style.display = 'none';
     formElement.firstElementChild.classList.remove('error');
     errorsOutputElement.textContent = '';
+    formElement.firstElementChild.lastElementChild.value = '';
 }
 
 function savePlayerConfig(event) {
@@ -21,4 +23,15 @@ function savePlayerConfig(event) {
         return;
     }
 
+    const updatedPlayerDataElement = document.getElementById('player-' + editedPlayer + '-data');
+    updatedPlayerDataElement.children[1].textContent = enteredPlayerName;
+
+    if (editedPlayer === 1) {
+        players[0].name = enteredPlayerName;
+    } else {
+        players[1].name = enteredPlayerName;
+    }
+
+
+    closePlayerConfig();
 }
